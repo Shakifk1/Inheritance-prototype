@@ -13,37 +13,34 @@ const child={
 }
 console.log(child.fullnames())
 // Q2 sol
-
-// creating an object constructor
-function Student(name,age){
-    this.name = name;
-    this.age = age;
+//2. Write code to explain prototype chaining
+//2.Ans--> whatever we are creating in js like array,
+// string etc it will attached with object methods
+//  this object methods are comming from prototype
+//  which is already predefined in js so 
+// we can use this with putting (.)dot.
+let object1={
+    name:"Abhishek",
+    city:"Ranchi",
+    getInfo:function(){
+        console.log(this.name + " from "+this.city);
+    }
 }
-//creating an object of type student
-let student1 = new Student('John',32)
-let student2 = new Student('Mary',32)
 
-console.log(student1);
-console.log(student2);
+let object2={
+    name:"Ronny"
+}
+// Never Do this
+object2.__proto__=object1;
 
-//adding property to student1 instance dynamically
-student1.sports = 'Cricket';
-
-//adding property to the prototype of the Student
-//this would add the gender property to all the 
-//existing object instance of the Student object 
-//and would initialize it to null
-Student.prototype.gender = null
-
-// although student3 is created with name and age
-// initialized but the gender property would also 
-//be attached to it and assigned as null because 
-//of the above mentioned line of code.
-let student3 = new Student('Anna',26)
+console.log(object2.name);//it will give me Ronny
+console.log(object2.city);//now it will give me object1 city name.
+object2.getInfo();//it will take name from object2 and city from object1.
+// we can say it is also prototype inheritance
+// it will making chan system.
 
 
-
-// q3 sol
+// q3 sol 
 arr1=[1,3,5,7,8]
 arr2=[8,5,6,4,6]
 arr3=[9,6,4,9,3]
@@ -63,3 +60,12 @@ Array.add(arr1);
 Array.add(arr2)
 Array.add(arr3)
 
+// q4
+//4. Write a JavaScript function to retrieve all the names of object's own and inherited properties.
+let objt={
+    name:"Dakota Jhonson",
+    Profession:"Actress",
+    MovieName:"fifty Shades Of Grey"
+}
+let allkey = Object.keys(objt);
+console.log(allkey);
